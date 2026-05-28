@@ -1,0 +1,1571 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ummah Press - منصة أخبار الأمة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a5f4a;
+            --primary-light: #2d8a6e;
+            --primary-dark: #0d3d2e;
+            --accent: #c9a84c;
+            --accent-light: #e8d5a3;
+            --dark: #0a0f0d;
+            --dark-light: #1a1f1d;
+            --dark-card: #121916;
+            --text: #e8ecea;
+            --text-secondary: #8a9a94;
+            --text-muted: #5a6a64;
+            --border: #1e2e28;
+            --gradient-1: linear-gradient(135deg, #1a5f4a 0%, #0d3d2e 100%);
+            --gradient-2: linear-gradient(135deg, #c9a84c 0%, #8b6914 100%);
+            --shadow: 0 20px 60px rgba(0,0,0,0.4);
+            --shadow-sm: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 15, 13, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(26, 95, 74, 0.4);
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 40px 10px 15px;
+            color: var(--text);
+            font-family: 'Tajawal', sans-serif;
+            width: 220px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            width: 280px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 12px;
+            border: none;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(26, 95, 74, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 95, 74, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: relative;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.95) 0%, rgba(10, 15, 13, 0.3) 50%, rgba(10, 15, 13, 0.1) 100%);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 80px;
+            right: 80px;
+            max-width: 700px;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--gradient-2);
+            color: var(--dark);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-excerpt {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .hero-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-dot.active {
+            background: var(--accent);
+            width: 35px;
+            border-radius: 6px;
+        }
+
+        /* Breaking News Ticker */
+        .ticker {
+            background: var(--primary-dark);
+            padding: 12px 0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ticker-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ticker-label {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .ticker-content {
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .ticker-text {
+            display: flex;
+            gap: 40px;
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .ticker-item i {
+            color: var(--accent);
+            font-size: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 35px;
+            background: var(--gradient-2);
+            border-radius: 3px;
+        }
+
+        .view-all {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .view-all:hover {
+            gap: 12px;
+        }
+
+        /* Featured Grid */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .featured-main {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .featured-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-main:hover img {
+            transform: scale(1.05);
+        }
+
+        .featured-main .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.95) 0%, transparent 100%);
+        }
+
+        .featured-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .featured-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 153px;
+            cursor: pointer;
+        }
+
+        .featured-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .featured-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.9) 0%, transparent 100%);
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .featured-main .card-title {
+            font-size: 28px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 12px 28px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--dark-card);
+            color: var(--text-secondary);
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 95, 74, 0.3);
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .news-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-light);
+        }
+
+        .news-card-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .news-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-card-image img {
+            transform: scale(1.1);
+        }
+
+        .news-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .news-card-content {
+            padding: 25px;
+        }
+
+        .news-card-title {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .news-card-excerpt {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .news-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .author-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .read-time {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--dark-light);
+            padding: 80px 0;
+            margin: 0 -30px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .video-main {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 450px;
+        }
+
+        .video-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(201, 168, 76, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--accent);
+        }
+
+        .play-btn i {
+            font-size: 28px;
+            color: var(--dark);
+            margin-left: 5px;
+        }
+
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: var(--dark-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover {
+            border-color: var(--primary-light);
+            transform: translateX(-5px);
+        }
+
+        .video-thumb {
+            position: relative;
+            width: 140px;
+            height: 90px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .video-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .video-info p {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: var(--gradient-1);
+            border-radius: 24px;
+            padding: 60px;
+            text-align: center;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(201, 168, 76, 0.1);
+            border-radius: 50%;
+        }
+
+        .newsletter h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 25px;
+            border-radius: 14px;
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 16px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.25);
+        }
+
+        .newsletter-form button {
+            padding: 15px 35px;
+            border-radius: 14px;
+            border: none;
+            background: var(--accent);
+            color: var(--dark);
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-light);
+            border-top: 1px solid var(--border);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 25px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-right: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-main {
+                height: 400px;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .search-box {
+                display: none;
+            }
+            .hero-title {
+                font-size: 28px;
+            }
+            .hero-content {
+                right: 30px;
+                left: 30px;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .categories {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 10px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .newsletter {
+                padding: 40px 25px;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, var(--dark-card) 25%, var(--dark-light) 50%, var(--dark-card) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="logo-text">Ummah <span>Press</span></div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#">أخبار عاجلة</a></li>
+                <li><a href="#">سياسة</a></li>
+                <li><a href="#">اقتصاد</a></li>
+                <li><a href="#">رياضة</a></li>
+                <li><a href="#">ثقافة</a></li>
+                <li><a href="#">تكنولوجيا</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="ابحث في الأخبار...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <button class="btn btn-primary">تسجيل الدخول</button>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=1920&q=80" alt="News">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="hero-tag">خبر عاجل</span>
+                    <h1 class="hero-title">قمة عربية إسلامية طارئة في مكة المكرمة لبحث التطورات الإقليمية</h1>
+                    <p class="hero-excerpt">تعقد القمة الطارئة لمناقشة الأوضاع في المنطقة وتطوير موقف موحد تجاه التحديات التي تواجه الأمة الإسلامية</p>
+                    <div class="hero-meta">
+                        <span><i class="far fa-clock"></i> منذ 3 ساعات</span>
+                        <span><i class="far fa-eye"></i> 12.5K مشاهدة</span>
+                        <span><i class="far fa-comment"></i> 245 تعليق</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1920&q=80" alt="News">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="hero-tag">اقتصاد</span>
+                    <h1 class="hero-title">الاقتصاد الإسلامي يسجل نمواً قياسياً بنسبة 8.5% خلال الربع الأول</h1>
+                    <p class="hero-excerpt">تقرير دولي يكشف عن تطورات إيجابية في قطاعات التمويل الإسلامي والصكوك والتجارة الحلال</p>
+                    <div class="hero-meta">
+                        <span><i class="far fa-clock"></i> منذ 5 ساعات</span>
+                        <span><i class="far fa-eye"></i> 8.2K مشاهدة</span>
+                        <span><i class="far fa-comment"></i> 156 تعليق</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1920&q=80" alt="News">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="hero-tag">رياضة</span>
+                    <h1 class="hero-title">المنتخب السعودي يتأهل لنهائيات كأس العالم 2026 بأداء تاريخي</h1>
+                    <p class="hero-excerpt">الأخضر السعودي يحقق إنجازاً تاريخياً بالتأهل المباشر بعد سلسلة من الانتصارات المذهلة</p>
+                    <div class="hero-meta">
+                        <span><i class="far fa-clock"></i> منذ 7 ساعات</span>
+                        <span><i class="far fa-eye"></i> 25.1K مشاهدة</span>
+                        <span><i class="far fa-comment"></i> 892 تعليق</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-nav">
+            <div class="hero-dot active" data-slide="0"></div>
+            <div class="hero-dot" data-slide="1"></div>
+            <div class="hero-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Breaking News Ticker -->
+    <div class="ticker">
+        <div class="ticker-container">
+            <span class="ticker-label">عاجل</span>
+            <div class="ticker-content">
+                <div class="ticker-text">
+                    <div class="ticker-item"><i class="fas fa-circle"></i> اجتماع طارئ لمجلس الأمن الدولي لبحث التطورات في الشرق الأوسط</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> ارتفاع أسعار النفط العالمية بنسبة 3% بعد التوترات الجيوسياسية</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> إطلاق أكبر مشروع طاقة شمسية في شمال أفريقيا بتكلفة 2 مليار دولار</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> مؤتمر دولي في إسطنبول يناقش مستقبل التعليم الإسلامي المعاصر</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> اكتشاف آثار إسلامية نادرة في جنوب شرق آسيا تعود للقرن الثامن</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> اجتماع طارئ لمجلس الأمن الدولي لبحث التطورات في الشرق الأوسط</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> ارتفاع أسعار النفط العالمية بنسبة 3% بعد التوترات الجيوسياسية</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> إطلاق أكبر مشروع طاقة شمسية في شمال أفريقيا بتكلفة 2 مليار دولار</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> مؤتمر دولي في إسطنبول يناقش مستقبل التعليم الإسلامي المعاصر</div>
+                    <div class="ticker-item"><i class="fas fa-circle"></i> اكتشاف آثار إسلامية نادرة في جنوب شرق آسيا تعود للقرن الثامن</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Featured Section -->
+        <div class="section-header">
+            <h2 class="section-title">أخبار مميزة</h2>
+            <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+        </div>
+
+        <div class="featured-grid">
+            <div class="featured-main">
+                <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=800&q=80" alt="Featured">
+                <div class="overlay">
+                    <span class="card-tag">سياسة</span>
+                    <h3 class="card-title">اتفاق تاريخي لتعزيز التعاون الاقتصادي بين دول الخليج وآسيا الوسطى</h3>
+                    <div class="card-meta">
+                        <span><i class="far fa-clock"></i> منذ ساعتين</span>
+                        <span><i class="far fa-eye"></i> 5.4K</span>
+                    </div>
+                </div>
+            </div>
+            <div class="featured-side">
+                <div class="featured-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="News">
+                    <div class="overlay">
+                        <span class="card-tag">اقتصاد</span>
+                        <h3 class="card-title">البنوك الإسلامية تطلق منصة رقمية موحدة</h3>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="News">
+                    <div class="overlay">
+                        <span class="card-tag">صحة</span>
+                        <h3 class="card-title">إنجاز طبي في مستشفى الملك فيصل التخصصي</h3>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80" alt="News">
+                    <div class="overlay">
+                        <span class="card-tag">ثقافة</span>
+                        <h3 class="card-title">مهرجان الفنون الإسلامية ينطلق في دبي</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories">
+            <button class="category-btn active">الكل</button>
+            <button class="category-btn">سياسة</button>
+            <button class="category-btn">اقتصاد</button>
+            <button class="category-btn">رياضة</button>
+            <button class="category-btn">تكنولوجيا</button>
+            <button class="category-btn">صحة</button>
+            <button class="category-btn">ثقافة</button>
+            <button class="category-btn">علوم</button>
+        </div>
+
+        <!-- Latest News -->
+        <div class="section-header">
+            <h2 class="section-title">آخر الأخبار</h2>
+            <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+        </div>
+
+        <div class="news-grid">
+            <article class="news-card">
+                <div class="news-card-image">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&q=80" alt="News">
+                    <span class="news-card-badge">عاجل</span>
+                </div>
+                <div class="news-card-content">
+                    <h3 class="news-card-title">الأمم المتحدة تدعو لوقف فوري لإطلاق النار في غزة</h3>
+                    <p class="news-card-excerpt">مجلس الأمن يصدر قراراً بأغلبية ساحقة يدعو لوقف إطلاق النار الفوري وإيصال المساعدات الإنسانية</p>
+                    <div class="news-card-footer">
+                        <div class="author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Author" class="author-avatar">
+                            <span class="author-name">أحمد الخالدي</span>
+                        </div>
+                        <span class="read-time"><i class="far fa-clock"></i> 5 دقائق</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-card-image">
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80" alt="News">
+                    <span class="news-card-badge">اقتصاد</span>
+                </div>
+                <div class="news-card-content">
+                    <h3 class="news-card-title">البيتكوين يتجاوز 85 ألف دولار للمرة الأولى في تاريخه</h3>
+                    <p class="news-card-excerpt">العملة الرقمية الأشهر تحقق قفزة تاريخية مدفوعة بدخول صناديق الاستثمار المؤسسي بقوة</p>
+                    <div class="news-card-footer">
+                        <div class="author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Author" class="author-avatar">
+                            <span class="author-name">محمد العمري</span>
+                        </div>
+                        <span class="read-time"><i class="far fa-clock"></i> 4 دقائق</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-card-image">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="News">
+                    <span class="news-card-badge">تكنولوجيا</span>
+                </div>
+                <div class="news-card-content">
+                    <h3 class="news-card-title">الذكاء الاصطناعي يحدث ثورة في التعليم الإسلامي</h3>
+                    <p class="news-card-excerpt">منصات تعليمية جديدة تستخدم الذكاء الاصطناعي لتخصيص تجربة التعلم وتحليل النصوص الشرعية</p>
+                    <div class="news-card-footer">
+                        <div class="author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Author" class="author-avatar">
+                            <span class="author-name">سارة القحطاني</span>
+                        </div>
+                        <span class="read-time"><i class="far fa-clock"></i> 6 دقائق</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-card-image">
+                    <img src="https://images.unsplash.com/photo-1569025743873-ea3a9e2fb2eb?w=600&q=80" alt="News">
+                    <span class="news-card-badge">رياضة</span>
+                </div>
+                <div class="news-card-content">
+                    <h3 class="news-card-title">الهلال السعودي يتوج بلقب دوري أبطال آسيا للمرة الخامسة</h3>
+                    <p class="news-card-excerpt">فريق الهلال يحقق إنجازاً تاريخياً بتتويجه بلقب البطولة القارية في نهائي مثير</p>
+                    <div class="news-card-footer">
+                        <div class="author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Author" class="author-avatar">
+                            <span class="author-name">خالد الزهراني</span>
+                        </div>
+                        <span class="read-time"><i class="far fa-clock"></i> 3 دقائق</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-card-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80" alt="News">
+                    <span class="news-card-badge">علوم</span>
+                </div>
+                <div class="news-card-content">
+                    <h3 class="news-card-title">اكتشاف كوكب جديد قد يكون صالحاً للحياة في مجرة درب التبانة</h3>
+                    <p class="news-card-excerpt">فريق دولي من العلماء يعلن عن اكتشاف كوكب يبعد 120 سنة ضوئية يحتوي على مؤشرات حياة</p>
+                    <div class="news-card-footer">
+                        <div class="author">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=80" alt="Author" class="author-avatar">
+                            <span class="author-name">د. ياسر الحربي</span>
+                        </div>
+                        <span class="read-time"><i class="far fa-clock"></i> 7 دقائق</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-card-image">
+                    <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&q=80" alt="News">
+                    <span class="news-card-badge">ثقافة</span>
+                </div>
+                <div class="news-card-content">
+                    <h3 class="news-card-title">متحف اللوفر يستضيف معرضاً للفن الإسلامي بمشاركة 200 قطعة نادرة</h3>
+                    <p class="news-card-excerpt">المعرض يستمر لمدة 6 أشهر ويقدم رحلة عبر تاريخ الفن الإسلامي من الأندلس إلى الصين</p>
+                    <div class="news-card-footer">
+                        <div class="author">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" alt="Author" class="author-avatar">
+                            <span class="author-name">نورة الشمري</span>
+                        </div>
+                        <span class="read-time"><i class="far fa-clock"></i> 5 دقائق</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="main-content" style="padding: 0;">
+            <div class="section-header">
+                <h2 class="section-title">فيديوهات مميزة</h2>
+                <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-main">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80" alt="Video">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(to top, rgba(10,15,13,0.95) 0%, transparent 100%);">
+                        <span class="card-tag">وثائقي</span>
+                        <h3 style="font-size: 24px; font-weight: 700; margin-top: 10px;">رحلة الحج: من مكة إلى قلوب المسلمين حول العالم</h3>
+                        <p style="color: var(--text-secondary); margin-top: 10px;">وثائقي يتناول تاريخ الحج وتطوره عبر العصور</p>
+                    </div>
+                </div>
+
+                <div class="video-list">
+                    <div class="video-item">
+                        <div class="video-thumb">
+                            <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=300&q=80" alt="Video">
+                            <span class="video-duration">12:45</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>ملخص مباراة الهلال والاتحاد في نهائي كأس الملك</h4>
+                            <p>رياضة • 45K مشاهدة</p>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <div class="video-thumb">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&q=80" alt="Video">
+                            <span class="video-duration">08:30</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>جولة في أطول برج في العالم: برج جدة</h4>
+                            <p>سياحة • 128K مشاهدة</p>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <div class="video-thumb">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&q=80" alt="Video">
+                            <span class="video-duration">15:20</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>مستقبل التكنولوجيا في العالم الإسلامي</h4>
+                            <p>تكنولوجيا • 67K مشاهدة</p>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <div class="video-thumb">
+                            <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=300&q=80" alt="Video">
+                            <span class="video-duration">22:10</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>وثائقي: تاريخ العلوم الإسلامية في الأندلس</h4>
+                            <p>تاريخ • 89K مشاهدة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="main-content">
+        <div class="newsletter">
+            <h2>اشترك في نشرتنا الإخبارية</h2>
+            <p>احصل على أهم الأخبار والتحليلات يومياً في بريدك الإلكتروني</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="أدخل بريدك الإلكتروني">
+                <button type="submit">اشترك الآن</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="logo-text">Ummah <span>Press</span></div>
+                </a>
+                <p>منصة إخبارية شاملة تقدم أحدث الأخبار والتحليلات من منظور إسلامي معاصر. نسعى لنقل الحقيقة بموضوعية واحترافية.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>الأقسام</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> أخبار عاجلة</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> اقتصاد</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> رياضة</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> ثقافة</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>عن الموقع</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> فريق العمل</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-envelope"></i> info@ummahpress.com</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> +966 50 123 4567</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Ummah Press. جميع الحقوق محفوظة.</p>
+            <div class="footer-bottom-links">
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">شروط الاستخدام</a>
+                <a href="#">خريطة الموقع</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Slider
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        setInterval(() => {
+            showSlide((currentSlide + 1) % slides.length);
+        }, 6000);
+
+        // Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.news-card, .featured-item, .video-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 15, 13, 0.98)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+            } else {
+                navbar.style.background = 'rgba(10, 15, 13, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Newsletter Form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = this.querySelector('input');
+            if (input.value) {
+                alert('شكراً لاشتراكك! سيتم إرسال النشرة الإخبارية إلى بريدك.');
+                input.value = '';
+            }
+        });
+
+        // Search Focus
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('focus', function() {
+            this.placeholder = 'اكتب للبحث...';
+        });
+        searchInput.addEventListener('blur', function() {
+            this.placeholder = 'ابحث في الأخبار...';
+        });
+    </script>
+</body>
+</html>
